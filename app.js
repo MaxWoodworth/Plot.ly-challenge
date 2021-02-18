@@ -15,8 +15,11 @@ function metadata(meta) {
         //from the html, we are told to find the panel w/ id #sample-metadata
         var PANEL = d3.select("#sample-metadata");
         //Clear existing outputs. Something I became very aware of during project 2 and still managed to forget.
-        PANEL.html("")
-        
+        PANEL.html("");
+        Object.entries(initialoutput).forEach(([key, value]) => {
+            PANEL.append("h6").text(`${key.toUpperCase()}: ${value}`);
+        })
+        metadata(meta)
     });
 
 }
@@ -88,8 +91,10 @@ function init() {
         Samp_ID.forEach((sample) => {
             selector.append("option").text(sample).property("value");
         });
-        charts(Samp_ID[0]);
-        metadata(data.metadata, + Samp_ID[0]);
+
+        var original = Samp_ID[0];
+        charts(original);
+        metadata(original);
     
     });
 //Create a function to display the new outcomes for the data when selection has been altered.
