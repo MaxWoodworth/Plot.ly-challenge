@@ -2,11 +2,20 @@
 //Use sample_values as the values for the bar chart.
 // Use otu_ids as the labels for the bar chart.
 // Use otu_labels as the hovertext for the chart.
-
-d3.json("samples.json").then((data) => {
-    console.log(data);
-    var samples = data.samples;
+function metadata(meta) {
+    d3.json("samples.json").then((data) => {
+        console.log(data);
+        //get data for samples and metadata
+        var samples = data.samples;
+        var metadata = data.metadata
+        //filter metadata by ID
+        var output = metadata.filter(results => results.id == meta);
+        //from the html, we are told to find the panel w/ id #sample-metadata
+        var PANEL = d3.select("#sample-metadata");
 })
+
+}
+
 // Use sample_values as the values for the bar chart
 function charts(charts){
     var output = samples.filter(result => results.id == charts);
@@ -52,6 +61,11 @@ function init() {
         buildDemographic(data.metadata, + Samp_ID[0]);
     
     });
+//Create a function to display the new outcomes for the data when selection has been altered.
+//optionChanged is from the html starter code
+function optionChanged(changed){
+
+}
 
 }
 init();
