@@ -19,9 +19,9 @@ function metadata(meta) {
         Object.entries(initialoutput).forEach(([key, value]) => {
             PANEL.append("h6").text(`${key.toUpperCase()}: ${value}`);
         })
-        metadata(meta)
+        
     });
-
+    
 }
 
 // Use sample_values as the values for the bar chart
@@ -97,6 +97,7 @@ function init() {
         metadata(original);
     
     });
+}
 //Create a function to display the new outcomes for the data when selection has been altered.
 //optionChanged is from the html starter code
 function optionChanged(changed){
@@ -104,5 +105,5 @@ function optionChanged(changed){
     metadata(changed);
 }
 
-}
+
 init();
