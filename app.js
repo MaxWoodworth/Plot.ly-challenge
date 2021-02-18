@@ -39,4 +39,19 @@ function charts(charts){
 
 
 //Initialize
-//init();
+//Tell the function where to find the dropdown information
+function init() {
+    var selector = d3.select("#selDataset");
+    d3.json("samples.json").then((data) => {
+        var Samp_ID = data.names;
+        Samp_ID.forEach((sample) => {
+            selector.append("option").text(sample).property("value");
+        });
+        buildPlot(Samp_ID[0]);
+        console.log(data);
+        buildDemographic(data.metadata, + Samp_ID[0]);
+    
+    });
+
+}
+init();
