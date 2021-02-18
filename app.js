@@ -6,7 +6,7 @@ function metadata(meta) {
     d3.json("samples.json").then((data) => {
         console.log(data);
         //get data for samples and metadata
-        var samples = data.samples;
+        //var samples = data.samples;
         var metadata = data.metadata
         //filter metadata by ID
         var output = metadata.filter(results => results.id == meta);
@@ -16,7 +16,8 @@ function metadata(meta) {
         var PANEL = d3.select("#sample-metadata");
         //Clear existing outputs. Something I became very aware of during project 2 and still managed to forget.
         PANEL.html("")
-});
+        
+    });
 
 }
 
@@ -32,7 +33,7 @@ function charts(meta){
         var otu_ids = outcome.otu_ids;
         var otu_labels = outcome.otu_labels;
 
-    var yaxis = otu_ids.slice(0, 10).map(OID => 'OTU ${OID}').reverse();
+    var yaxis = otu_ids.slice(0, 10).map(OID => `OTU ${OID}`).reverse();
     var boutputs = [
         {
             y: yaxis,
@@ -88,7 +89,6 @@ function init() {
             selector.append("option").text(sample).property("value");
         });
         charts(Samp_ID[0]);
-        console.log(data);
         metadata(data.metadata, + Samp_ID[0]);
     
     });
